@@ -2,13 +2,16 @@ package member_service.memberservice.service;
 
 import member_service.memberservice.domain.Member;
 import member_service.memberservice.repository.MemberRepository;
-import member_service.memberservice.repository.MemoryMemberRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 public class MemberService {
-	private final MemberRepository memberRepository = new MemoryMemberRepository();
+	private final MemberRepository memberRepository;
+
+	public MemberService(MemberRepository memberRepository) {
+		this.memberRepository = memberRepository;
+	}
 
 	// 회원 가입
 	public Long join(Member member) {
@@ -27,7 +30,7 @@ public class MemberService {
 	public List<Member> findMembers() {
 		return memberRepository.findAll();
 	}
-	
+
 	// 회원 조회
 	public Optional<Member> findOne(Long memberId) {
 		return memberRepository.findById(memberId);
