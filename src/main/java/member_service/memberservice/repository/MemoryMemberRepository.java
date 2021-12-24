@@ -1,9 +1,12 @@
 package member_service.memberservice.repository;
 
 import member_service.memberservice.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+// MemoryMemberRepository 를 스프링 빈에 등록
+@Repository
 public class MemoryMemberRepository implements MemberRepository {
 	// !실무에서는 static 멤버 변수(클래스 변수) 사용 시, 동시성 문제 고려!
 	private static Map<Long, Member> store = new HashMap<>();
