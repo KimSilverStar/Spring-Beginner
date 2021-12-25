@@ -4,8 +4,11 @@ import member_service.memberservice2.domain.Member;
 import member_service.memberservice2.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 // MemberController 를 스프링 빈에 등록
 @Controller
@@ -36,5 +39,15 @@ public class MemberController {
 
 		return "redirect:/";
 		// "localhost:8080/" home 으로 redirect
+	}
+
+	@GetMapping("/members")
+	public String list(Model model) {
+		List<Member> members = memberService.findMembers();
+		model.addAttribute("members", members);
+		// key: "members", value: members (List<Member>)
+
+		return "members/memberList";
+		// "localhost:8080/members" 접속 => memberList.html
 	}
 }
