@@ -8,6 +8,6 @@ public class HomeController {
 	@GetMapping("/")
 	public String home() {
 		return "home";
-		// "localhost:8080/" => home.html
+		// "localhost:8080/" 접속 => home.html
 	}
 }
