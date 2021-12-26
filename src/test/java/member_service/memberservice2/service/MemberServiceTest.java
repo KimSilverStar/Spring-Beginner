@@ -41,7 +41,7 @@ class MemberServiceTest {
 
 		// Then: 실행 결과
 		Member findMember = memberService.findOne(saveId).get();
-		assertThat(member).isEqualTo(findMember);
+		assertThat(member.getName()).isEqualTo(findMember.getName());
 	}
 
 	@Test
