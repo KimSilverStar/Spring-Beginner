@@ -1,6 +1,7 @@
 package member_service.memberservice2.repository;
 
 import member_service.memberservice2.domain.Member;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 
 import javax.sql.DataSource;
@@ -20,6 +21,7 @@ public class JdbcMemberRepository implements MemberRepository {
     private final DataSource dataSource;
 
     // 생성자를 통한 DI
+    @Autowired
     public JdbcMemberRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }

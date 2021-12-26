@@ -1,6 +1,7 @@
 package member_service.memberservice2;
 
 import member_service.memberservice2.repository.JdbcMemberRepository;
+import member_service.memberservice2.repository.JdbcTemplateMemberRepository;
 import member_service.memberservice2.repository.MemberRepository;
 //import member_service.memberservice2.repository.MemoryMemberRepository;
 import member_service.memberservice2.service.MemberService;
@@ -10,10 +11,18 @@ import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
 
+/*
+* 자바 코드로 직접 스프링 빈 등록
+ - SpringConfig 클래스: @Configuration
+ - @Bean 으로 스프링 빈에 등록할 객체
+*/
+
 @Configuration
 public class SpringConfig {
 	/* 1. 순수 JDBC - JdbcMemberRepository */
-	private final DataSource dataSource;	// JdbcMemberRepository 에 DI
+	/* 2. JDBC Template - JdbcTemplateMemberRepository */
+	private final DataSource dataSource;
+	// JdbcMemberRepository, JdbcTemplateMemberRepository 에 DI
 
 	@Autowired
 	public SpringConfig(DataSource dataSource) {
@@ -29,6 +38,7 @@ public class SpringConfig {
 	@Bean
 	public MemberRepository memberRepository() {
 //		return new MemoryMemberRepository();
-		return new JdbcMemberRepository(dataSource);
+//		return new JdbcMemberRepository(dataSource);
+		return new JdbcTemplateMemberRepository(dataSource);
 	}
 }
