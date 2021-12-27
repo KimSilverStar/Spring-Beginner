@@ -1,5 +1,6 @@
 package member_service.memberservice2;
 
+import member_service.memberservice2.aop.TimeTraceAop;
 import member_service.memberservice2.repository.JdbcMemberRepository;
 import member_service.memberservice2.repository.JdbcTemplateMemberRepository;
 import member_service.memberservice2.repository.JpaMemberRepository;
@@ -56,6 +57,11 @@ public class SpringConfig {
 	public MemberService memberService() {
 //		return new MemberService(memberRepository());
 		return new MemberService(memberRepository);
+	}
+
+	@Bean
+	public TimeTraceAop timeTraceAop() {
+		return new TimeTraceAop();
 	}
 
 //	@Bean
