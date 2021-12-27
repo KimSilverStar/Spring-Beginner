@@ -33,24 +33,36 @@ public class SpringConfig {
 //	}
 
 	/* 3. JPA - JpaMemberRepository */
-	private final EntityManager em;
+//	private final EntityManager em;
+//
+//	@Autowired
+//	public SpringConfig(EntityManager em) {
+//		this.em = em;
+//		// 생성자를 통한 DI, 스프링 부트가 자동으로 EntityManager 주입
+//	}
+
+	/* 4. 스프링 데이터 JPA - SpringDataJpaMemberRepository */
+	private final MemberRepository memberRepository;
 
 	@Autowired
-	public SpringConfig(EntityManager em) {
-		this.em = em;
-		// 생성자를 통한 DI, 스프링 부트가 자동으로 EntityManager 주입
+	public SpringConfig(MemberRepository memberRepository) {
+		this.memberRepository = memberRepository;
+//		스프링 데이터 JPA 가 SpringDataJpaMemberRepository
+//		interface 의 구현체를 자동으로 생성하여 스프링 빈에 등록
+//		=> 스프링 빈에 등록된 스프링 데이터 JPA interface 의 구현체를 DI 받음
 	}
 
 	@Bean
 	public MemberService memberService() {
-		return new MemberService(memberRepository());
+//		return new MemberService(memberRepository());
+		return new MemberService(memberRepository);
 	}
 
-	@Bean
-	public MemberRepository memberRepository() {
-//		return new MemoryMemberRepository();
-//		return new JdbcMemberRepository(dataSource);
-//		return new JdbcTemplateMemberRepository(dataSource)
-		return new JpaMemberRepository(em);
-	}
+//	@Bean
+//	public MemberRepository memberRepository() {
+////		return new MemoryMemberRepository();
+////		return new JdbcMemberRepository(dataSource);
+////		return new JdbcTemplateMemberRepository(dataSource)
+//		return new JpaMemberRepository(em);
+//	}
 }
