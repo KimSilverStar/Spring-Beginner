@@ -2,10 +2,13 @@ package member_service.memberservice2.service;
 
 import member_service.memberservice2.domain.Member;
 import member_service.memberservice2.repository.MemberRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+// JPA 는 Transaction 하여 동작
+@Transactional
 public class MemberService {
 	private final MemberRepository memberRepository;
 
